@@ -1,9 +1,10 @@
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+export default function App(): React.ReactElement {
  return (
   <View style={styles.container}>
-   <Text>Student Censa Meat</Text>
+   <Text>Student Censa Meat Con Type</Text>
   </View>
  );
 }
