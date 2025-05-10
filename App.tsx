@@ -1,13 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
 import { Typography } from './src/styles/typography';
 
-export default function App(): React.ReactElement {
+export default function App() {
+ const [fontsLoaded, onFontsReady] = useAppFonts();
+
+ if (!fontsLoaded) return null;
+
  return (
-  <View style={styles.container}>
-   <Text style={styles.text}>Student Censa Meat Con Types </Text>
+  <View onLayout={onFontsReady} style={styles.container}>
+   <Text style={styles.title}>Texto con fuente global Montserrat</Text>
   </View>
  );
 }
@@ -19,7 +24,5 @@ const styles = StyleSheet.create({
   alignItems: 'center',
   justifyContent: 'center',
  },
- text: {
-  ...Typography.title,
- },
+ title: { ...Typography.title },
 });
