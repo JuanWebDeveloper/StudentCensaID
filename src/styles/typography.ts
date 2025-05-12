@@ -2,13 +2,13 @@ import { TextStyle } from 'react-native';
 
 export const Typography: { [key: string]: TextStyle } = {
  title: {
-  color: '#0e4eff',
+  color: '#43e81e',
   fontFamily: 'Montserrat-Bold',
-  fontSize: 26,
-  lineHeight: 33,
+  fontSize: 33,
+  lineHeight: 47,
  },
  subtitle: {
-  color: '#0445bd',
+  color: '#55fc30',
   fontFamily: 'Montserrat-SemiBold',
   fontSize: 20,
   lineHeight: 25,

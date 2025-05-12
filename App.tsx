@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
-import { Typography } from './src/styles/typography';
+import MeatObserve from './src/components/MeatObserve';
 
 export default function App() {
  const [fontsLoaded, onFontsReady] = useAppFonts();
@@ -12,7 +12,7 @@ export default function App() {
 
  return (
   <View onLayout={onFontsReady} style={styles.container}>
-   <Text style={styles.title}>Texto con fuente global Montserrat</Text>
+   <MeatObserve />
   </View>
  );
 }
@@ -20,9 +20,8 @@ export default function App() {
 const styles = StyleSheet.create({
  container: {
   flex: 1,
-  backgroundColor: Colors.primary,
+  backgroundColor: Colors.secondary,
   alignItems: 'center',
   justifyContent: 'center',
  },
- title: { ...Typography.title },
 });
