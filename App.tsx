@@ -1,7 +1,5 @@
-// App.tsx
-
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Animated, StyleSheet, View, ScrollView } from 'react-native';
 
 import IDCardFront from './src/components/IDCardFront';
 import IDCardBack from './src/components/IDCardBack';
@@ -9,25 +7,46 @@ import FlipCardButton from './src/components/FlipCardButton';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
-import { Spacing } from './src/styles/spacing';
 
 export default function App() {
  const [fontsLoaded, onFontsReady] = useAppFonts();
+ const [flipped, setFlipped] = useState(false);
+ const rotateAnim = useRef(new Animated.Value(0)).current;
+
+ const flipCard = () => {
+  Animated.spring(rotateAnim, {
+   toValue: flipped ? 0 : 180,
+   friction: 8,
+   tension: 10,
+   useNativeDriver: true,
+  }).start(() => setFlipped(!flipped));
+ };
+
+ const frontInterpolate = rotateAnim.interpolate({
+  inputRange: [0, 180],
+  outputRange: ['0deg', '180deg'],
+ });
+
+ const backInterpolate = rotateAnim.interpolate({
+  inputRange: [0, 180],
+  outputRange: ['180deg', '360deg'],
+ });
 
  if (!fontsLoaded) return null;
 
  return (
   <ScrollView onLayout={onFontsReady} contentContainerStyle={styles.scrollContainer}>
    <View style={styles.cardWrapper}>
-    <View style={styles.card}>
+    <Animated.View style={[styles.card, { transform: [{ rotateY: frontInterpolate }] }]}>
      <IDCardFront />
-    </View>
-    <View style={styles.card}>
+    </Animated.View>
+
+    <Animated.View style={[styles.card, styles.cardBack, { transform: [{ rotateY: backInterpolate }] }]}>
      <IDCardBack />
-    </View>
+    </Animated.View>
    </View>
 
-   <FlipCardButton />
+   <FlipCardButton onPress={flipCard} />
   </ScrollView>
  );
 }
@@ -43,13 +62,16 @@ const styles = StyleSheet.create({
  cardWrapper: {
   position: 'relative',
   width: 350,
-  height: 500,
-  marginBottom: Spacing.xs,
+  height: 550,
+  marginBottom: 30,
  },
  card: {
   backfaceVisibility: 'hidden',
   position: 'absolute',
   width: '100%',
   height: '100%',
+ },
+ cardBack: {
+  transform: [{ rotateY: '180deg' }],
  },
 });

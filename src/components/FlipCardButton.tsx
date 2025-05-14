@@ -1,22 +1,41 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient'; // Importa el gradiente
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from '../styles/colors';
 import { Spacing } from '../styles/spacing';
 import { Typography } from '../styles/typography';
 
-export default function FlipCardButton() {
+interface Props {
+ onPress: () => void;
+}
+
+export default function FlipCardButton({ onPress }: Props) {
+ const scale = new Animated.Value(1);
+
+ const handlePressIn = () => {
+  Animated.spring(scale, {
+   toValue: 1.1,
+   useNativeDriver: true,
+  }).start();
+ };
+
+ const handlePressOut = () => {
+  Animated.spring(scale, {
+   toValue: 1,
+   useNativeDriver: true,
+  }).start();
+ };
+
  return (
-  <View style={styles.buttonContainer}>
-   <Pressable>
+  <Animated.View style={[styles.buttonContainer, { transform: [{ scale }] }]}>
+   <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={onPress}>
     <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[Colors.buttonPrimary, Colors.buttonSecondary]} style={styles.buttonContent}>
      <Ionicons name='sync' size={24} color='white' />
      <Text style={styles.buttonText}>Flip Card</Text>
     </LinearGradient>
    </Pressable>
-  </View>
+  </Animated.View>
  );
 }
 
