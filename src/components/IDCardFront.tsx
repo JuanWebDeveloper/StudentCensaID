@@ -6,7 +6,7 @@ import { Typography } from '../styles/typography';
 import { Shadows } from '../styles/shadows';
 import { Spacing } from '../styles/spacing';
 
-export default function MeatObserve() {
+export default function IDCardFront() {
  return (
   <View style={styles.card}>
    <View style={styles.censaLogo}>
@@ -25,10 +25,7 @@ export default function MeatObserve() {
    </View>
    <View style={styles.additionalData}>
     <Text style={styles.validUntil}>Válido hasta: Dic 2025</Text>
-    <Text style={styles.disclaimer}>
-     Este carnet estudiantil es de carácter personal e intransferible. Se prohíbe estrictamente cualquier alteración o uso no autorizado del mismo. La
-     violación de estas disposiciones estará sujeta a las sanciones correspondientes.
-    </Text>
+    <Text style={styles.disclaimer}>Este carnet estudiantil es de carácter personal e intransferible.</Text>
    </View>
   </View>
  );
@@ -41,10 +38,10 @@ const styles = StyleSheet.create({
   alignItems: 'center',
   backgroundColor: Colors.primary,
   borderRadius: 15,
-  height: 505,
+  height: 500,
   justifyContent: 'center',
   paddingBottom: Spacing.lg,
-  width: 650,
+  width: 350,
  },
 
  // Logo section styles
@@ -56,25 +53,24 @@ const styles = StyleSheet.create({
   display: 'flex',
   textAlign: 'center',
   width: '100%',
+  height: 85,
+  marginBottom: Spacing.sm,
  },
  logoImages: {
-  ...Shadows.logo,
-  height: 150,
-  width: 200,
+  height: '100%',
+  width: 250,
  },
 
  // Basic data section styles
  basicData: {
-  alignItems: 'center',
   backgroundColor: '#f8f9fa70',
-  flexDirection: 'column',
   padding: Spacing.xs,
   width: '100%',
  },
  contentContainer: {
   alignItems: 'center',
   alignContent: 'center',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'center',
   padding: Spacing.md,
   width: '100%',
@@ -84,7 +80,7 @@ const styles = StyleSheet.create({
   backgroundColor: '#43C10055',
   borderRadius: 55,
   height: 180,
-  marginRight: Spacing.md,
+  marginBottom: Spacing.md,
   width: 180,
  },
  textContainer: {
@@ -103,8 +99,8 @@ const styles = StyleSheet.create({
  },
  program: {
   ...Typography.text,
-  ...Shadows.textTextShadow,
   fontStyle: 'italic',
+  marginTop: Spacing.sm,
   textAlign: 'center',
  },
 
@@ -122,7 +118,6 @@ const styles = StyleSheet.create({
  },
  disclaimer: {
   ...Typography.text,
-  ...Shadows.textTextShadow,
   fontSize: 12,
   fontStyle: 'italic',
   textAlign: 'center',

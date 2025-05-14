@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
-import MeatObserve from './src/components/MeatObserve';
+import IDCardFront from './src/components/IDCardFront';
 
 export default function App() {
  const [fontsLoaded, onFontsReady] = useAppFonts();
@@ -12,7 +12,7 @@ export default function App() {
 
  return (
   <View onLayout={onFontsReady} style={styles.container}>
-   <MeatObserve />
+   <IDCardFront />
   </View>
  );
 }
