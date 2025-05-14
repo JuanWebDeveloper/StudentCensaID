@@ -9,6 +9,7 @@ import FlipCardButton from './src/components/FlipCardButton';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
+import { Spacing } from './src/styles/spacing';
 
 export default function App() {
  const [fontsLoaded, onFontsReady] = useAppFonts();
@@ -16,10 +17,14 @@ export default function App() {
  if (!fontsLoaded) return null;
 
  return (
-  <ScrollView onLayout={onFontsReady} contentContainerStyle={styles.container}>
-   <View>
-    <IDCardFront />
-    <IDCardBack />
+  <ScrollView onLayout={onFontsReady} contentContainerStyle={styles.scrollContainer}>
+   <View style={styles.cardWrapper}>
+    <View style={styles.card}>
+     <IDCardFront />
+    </View>
+    <View style={styles.card}>
+     <IDCardBack />
+    </View>
    </View>
 
    <FlipCardButton />
@@ -28,10 +33,23 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
- container: {
-  flex: 1,
+ scrollContainer: {
+  flexGrow: 1,
   backgroundColor: Colors.secondary,
   alignItems: 'center',
   justifyContent: 'center',
+  paddingVertical: 40,
+ },
+ cardWrapper: {
+  position: 'relative',
+  width: 350,
+  height: 500,
+  marginBottom: Spacing.xs,
+ },
+ card: {
+  backfaceVisibility: 'hidden',
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
  },
 });

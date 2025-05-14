@@ -19,4 +19,11 @@ export const Typography: { [key: string]: TextStyle } = {
   fontFamily: 'Montserrat-Regular',
   lineHeight: 20,
  },
+ button: {
+  color: '#fefefe',
+  fontFamily: 'Montserrat-Bold',
+  fontSize: 20,
+  lineHeight: 24,
+  marginLeft: 8,
+ },
 };
