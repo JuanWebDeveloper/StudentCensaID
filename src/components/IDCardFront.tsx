@@ -6,7 +6,7 @@ import { Typography } from '../styles/typography';
 import { Shadows } from '../styles/shadows';
 import { Spacing } from '../styles/spacing';
 
-export default function MeatObserve() {
+export default function IDCardFront() {
  return (
   <View style={styles.card}>
    <View style={styles.censaLogo}>
