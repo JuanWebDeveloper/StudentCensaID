@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import IDCardFront from './src/components/IDCardFront';
+import IDCardBack from './src/components/IDCardBack';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
-import IDCardFront from './src/components/IDCardFront';
 
 export default function App() {
  const [fontsLoaded, onFontsReady] = useAppFonts();
@@ -12,7 +14,8 @@ export default function App() {
 
  return (
   <View onLayout={onFontsReady} style={styles.container}>
-   <IDCardFront />
+   {/* <IDCardFront /> */}
+   <IDCardBack />
   </View>
  );
 }
