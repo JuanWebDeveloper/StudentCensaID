@@ -1,5 +1,8 @@
 // React Native core components
 import { StyleSheet, Text, View, Image, Linking, Pressable, Animated } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { FontAwesome } from '@expo/vector-icons';
+
 // 📦 Helpers
 import { createScaleAnimation } from '../helpers/scaleAnimationHelper';
 import { openEmailApp } from '../helpers/emailHelper';
@@ -20,38 +23,39 @@ export default function IDCardBack() {
 
  return (
   <View style={styles.card}>
-   <Text style={styles.contactHeader}>Información De Contacto</Text>
+   <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[Colors.buttonPrimary, Colors.buttonSecondary]} style={styles.contactHeader}>
+    <Text style={styles.contactHeaderText}>Información De Contacto</Text>
+   </LinearGradient>
 
    <View style={styles.infoRow}>
-    <Image source={require('../../assets/images/logoEmail.png')} style={styles.iconImage} />
     <Pressable onPressIn={handlePressInEmail} onPressOut={handlePressOutEmail} onPress={() => openEmailApp('juandeveloper19@gmail.com')}>
      {({ pressed }) => (
-      <Animated.Text style={[styles.infoText, pressed && styles.linkPressed, { transform: [{ scale: scaleEmail }] }]}>
-       juandeveloper19@gmail.com
-      </Animated.Text>
+      <Animated.View style={[styles.linkContent, { transform: [{ scale: scaleEmail }] }]}>
+       <FontAwesome name='envelope' size={24} color={pressed ? '#38f9d7' : '#11998e'} style={styles.icon} />
+       <Text style={[styles.infoText, pressed && styles.linkPressed]}>juandeveloper19@gmail.com</Text>
+      </Animated.View>
      )}
     </Pressable>
    </View>
 
    <View style={styles.infoRow}>
-    <Image source={require('../../assets/images/logoGitHub.png')} style={styles.iconImage} />
     <Pressable
      onPressIn={handlePressInGitHub}
      onPressOut={handlePressOutGitHub}
      onPress={() => Linking.openURL('https://github.com/JuanWebDeveloper')}
     >
      {({ pressed }) => (
-      <>
-       <Animated.Text style={[styles.infoText, pressed && styles.linkPressed, { transform: [{ scale: scaleGitHub }] }]}>
-        github.com/JuanWebDeveloper
-       </Animated.Text>
-      </>
+      <Animated.View style={[styles.linkContent, { transform: [{ scale: scaleGitHub }] }]}>
+       <FontAwesome name='github' size={24} color={pressed ? '#38f9d7' : '#11998e'} style={styles.icon} />
+       <Text style={[styles.infoText, pressed && styles.linkPressed]}>github.com/JuanWebDeveloper</Text>
+      </Animated.View>
      )}
     </Pressable>
    </View>
 
    <View style={styles.qrContainer}>
     <Image source={require('../../assets/images/repositoriesQR.png')} style={styles.qrImage} />
+    <Text style={styles.qrNote}>¡Explora El Perfil Técnico Del Estudiante En GitHub!</Text>
    </View>
   </View>
  );
@@ -60,47 +64,60 @@ export default function IDCardBack() {
 const styles = StyleSheet.create({
  card: {
   ...Shadows.card,
+  alignItems: 'center',
   backgroundColor: Colors.primary,
   borderRadius: 15,
-  height: 500,
+  height: 550,
   justifyContent: 'space-between',
   padding: Spacing.md,
   width: 350,
-  alignItems: 'center',
  },
  contactHeader: {
-  ...Typography.subtitle,
   ...Shadows.highlight,
   backgroundColor: '#43C100',
   borderRadius: 10,
-  color: '#fefefe',
-  marginBottom: Spacing.md,
+  marginBottom: Spacing.lg,
   padding: Spacing.md,
-  textAlign: 'center',
  },
- iconImage: {
-  height: 25,
-  marginRight: Spacing.sm,
-  width: 25,
+ contactHeaderText: {
+  ...Typography.subtitle,
+
+  color: '#fefefe',
+  textAlign: 'center',
  },
  infoRow: {
   alignItems: 'center',
   flexDirection: 'row',
-  marginBottom: Spacing.sm,
+  marginBottom: Spacing.lg,
+ },
+ linkContent: {
+  alignItems: 'center',
+  flexDirection: 'row',
+ },
+ icon: {
+  marginRight: Spacing.sm,
  },
  infoText: {
   ...Typography.text,
+  color: '#11998e',
+  fontFamily: 'Montserrat-SemiBold',
  },
  linkPressed: {
-  color: '#43C100',
+  color: '#38f9d7',
  },
  qrContainer: {
   alignItems: 'center',
-  marginTop: Spacing.md,
  },
  qrImage: {
   height: 250,
   resizeMode: 'contain',
   width: 300,
+ },
+ qrNote: {
+  ...Typography.subtitle,
+  ...Shadows.textTitleShadow,
+  color: '#11998e',
+  marginTop: Spacing.sm,
+  textAlign: 'center',
  },
 });

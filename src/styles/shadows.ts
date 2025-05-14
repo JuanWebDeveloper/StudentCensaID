@@ -25,12 +25,12 @@ export const Shadows = {
   elevation: 10,
  },
  textTitleShadow: {
-  textShadowColor: '#43e81e',
+  textShadowColor: '#11998e',
   textShadowOffset: { width: 1, height: 3 },
   textShadowRadius: 15,
  },
  textSubtitleShadow: {
-  textShadowColor: '#55fc30',
+  textShadowColor: '#38f9d7',
   textShadowOffset: { width: 1, height: 1 },
   textShadowRadius: 2,
  },

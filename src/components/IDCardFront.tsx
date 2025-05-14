@@ -12,7 +12,6 @@ export default function IDCardFront() {
    <View style={styles.censaLogo}>
     <Image source={require('../../assets/images/logotipoCensa.png')} style={styles.logoImages} />
    </View>
-
    <View style={styles.basicData}>
     <View style={styles.contentContainer}>
      <Image source={require('../../assets/images/photo.png')} style={styles.photo} />
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
   alignItems: 'center',
   backgroundColor: Colors.primary,
   borderRadius: 15,
-  height: 500,
+  height: 550,
   justifyContent: 'center',
   paddingBottom: Spacing.lg,
   width: 350,
@@ -46,14 +45,10 @@ const styles = StyleSheet.create({
 
  // Logo section styles
  censaLogo: {
-  ...Shadows.highlight,
   alignItems: 'center',
-  backgroundColor: '#43C10055',
   borderRadius: 15,
-  display: 'flex',
-  textAlign: 'center',
-  width: '100%',
-  height: 85,
+  width: '90%',
+  height: 70,
   marginBottom: Spacing.sm,
  },
  logoImages: {
@@ -77,7 +72,7 @@ const styles = StyleSheet.create({
  },
  photo: {
   ...Shadows.photo,
-  backgroundColor: '#43C10055',
+  backgroundColor: '#11998e',
   borderRadius: 55,
   height: 180,
   marginBottom: Spacing.md,
