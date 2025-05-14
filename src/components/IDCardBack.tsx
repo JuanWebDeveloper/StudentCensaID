@@ -1,5 +1,6 @@
 // React Native core components
 import { StyleSheet, Text, View, Image, Linking, Pressable, Animated } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 // 📦 Helpers
 import { createScaleAnimation } from '../helpers/scaleAnimationHelper';
 import { openEmailApp } from '../helpers/emailHelper';
@@ -20,7 +21,9 @@ export default function IDCardBack() {
 
  return (
   <View style={styles.card}>
-   <Text style={styles.contactHeader}>Información De Contacto</Text>
+   <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[Colors.buttonPrimary, Colors.buttonSecondary]} style={styles.contactHeader}>
+    Información De Contacto
+   </LinearGradient>
 
    <View style={styles.infoRow}>
     <Image source={require('../../assets/images/logoEmail.png')} style={styles.iconImage} />
@@ -52,6 +55,7 @@ export default function IDCardBack() {
 
    <View style={styles.qrContainer}>
     <Image source={require('../../assets/images/repositoriesQR.png')} style={styles.qrImage} />
+    <Text style={styles.qrNote}>¡Explora El Perfil Técnico Del Estudiante En GitHub!</Text>
    </View>
   </View>
  );
@@ -92,7 +96,8 @@ const styles = StyleSheet.create({
   ...Typography.text,
  },
  linkPressed: {
-  color: '#43C100',
+  ...Shadows.textTitleShadow,
+  color: '#11998e',
  },
  qrContainer: {
   alignItems: 'center',
@@ -102,5 +107,11 @@ const styles = StyleSheet.create({
   height: 250,
   resizeMode: 'contain',
   width: 300,
+ },
+ qrNote: {
+  ...Typography.subtitle,
+  ...Shadows.textSubtitleShadow,
+  marginTop: Spacing.sm,
+  textAlign: 'center',
  },
 });
