@@ -1,15 +1,20 @@
+// React Native core components
 import { StyleSheet, Text, View, Image, Linking, Pressable, Animated } from 'react-native';
-
+// 📦 Helpers
 import { createScaleAnimation } from '../helpers/scaleAnimationHelper';
+import { openEmailApp } from '../helpers/emailHelper';
+// 🎨 Styles
 import { Colors } from '../styles/colors';
 import { Typography } from '../styles/typography';
 import { Shadows } from '../styles/shadows';
 import { Spacing } from '../styles/spacing';
 
 export default function IDCardBack() {
+ // Animated values used to scale each link individually on press
  const scaleEmail = new Animated.Value(1);
  const scaleGitHub = new Animated.Value(1);
 
+ // Animation handlers that trigger zoom in/out effects for email and GitHub links
  const { handlePressIn: handlePressInEmail, handlePressOut: handlePressOutEmail } = createScaleAnimation(scaleEmail);
  const { handlePressIn: handlePressInGitHub, handlePressOut: handlePressOutGitHub } = createScaleAnimation(scaleGitHub);
 
@@ -19,7 +24,7 @@ export default function IDCardBack() {
 
    <View style={styles.infoRow}>
     <Image source={require('../../assets/images/logoEmail.png')} style={styles.iconImage} />
-    <Pressable onPressIn={handlePressInEmail} onPressOut={handlePressOutEmail}>
+    <Pressable onPressIn={handlePressInEmail} onPressOut={handlePressOutEmail} onPress={() => openEmailApp('juandeveloper19@gmail.com')}>
      {({ pressed }) => (
       <Animated.Text style={[styles.infoText, pressed && styles.linkPressed, { transform: [{ scale: scaleEmail }] }]}>
        juandeveloper19@gmail.com
@@ -37,13 +42,7 @@ export default function IDCardBack() {
     >
      {({ pressed }) => (
       <>
-       <Animated.Text
-        style={[
-         styles.infoText,
-         pressed && styles.linkPressed,
-         { transform: [{ scale: scaleGitHub }] }, // Aplicamos la animación solo a GitHub
-        ]}
-       >
+       <Animated.Text style={[styles.infoText, pressed && styles.linkPressed, { transform: [{ scale: scaleGitHub }] }]}>
         github.com/JuanWebDeveloper
        </Animated.Text>
       </>
