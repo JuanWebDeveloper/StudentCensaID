@@ -6,16 +6,7 @@ export const Shadows = {
   shadowRadius: 20,
   elevation: 3, // Android
  },
- logo: {
-  shadowColor: '#222',
-  shadowOffset: {
-   width: 0,
-   height: 0,
-  },
-  shadowOpacity: 0.9,
-  shadowRadius: 10,
-  elevation: 5, // For Android shadow
- },
+
  photo: {
   shadowColor: '#222',
   shadowOffset: {
