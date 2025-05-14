@@ -24,7 +24,7 @@ export default function IDCardBack() {
  return (
   <View style={styles.card}>
    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} colors={[Colors.buttonPrimary, Colors.buttonSecondary]} style={styles.contactHeader}>
-    Información De Contacto
+    <Text style={styles.contactHeaderText}>Información De Contacto</Text>
    </LinearGradient>
 
    <View style={styles.infoRow}>
@@ -73,13 +73,16 @@ const styles = StyleSheet.create({
   width: 350,
  },
  contactHeader: {
-  ...Typography.subtitle,
   ...Shadows.highlight,
   backgroundColor: '#43C100',
   borderRadius: 10,
-  color: '#fefefe',
   marginBottom: Spacing.lg,
   padding: Spacing.md,
+ },
+ contactHeaderText: {
+  ...Typography.subtitle,
+
+  color: '#fefefe',
   textAlign: 'center',
  },
  infoRow: {
