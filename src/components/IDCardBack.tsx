@@ -1,23 +1,54 @@
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View, Image, Linking, Pressable, Animated } from 'react-native';
 
+import { createScaleAnimation } from '../helpers/scaleAnimationHelper';
 import { Colors } from '../styles/colors';
 import { Typography } from '../styles/typography';
 import { Shadows } from '../styles/shadows';
 import { Spacing } from '../styles/spacing';
 
 export default function IDCardBack() {
+ const scaleEmail = new Animated.Value(1);
+ const scaleGitHub = new Animated.Value(1);
+
+ const { handlePressIn: handlePressInEmail, handlePressOut: handlePressOutEmail } = createScaleAnimation(scaleEmail);
+ const { handlePressIn: handlePressInGitHub, handlePressOut: handlePressOutGitHub } = createScaleAnimation(scaleGitHub);
+
  return (
   <View style={styles.card}>
    <Text style={styles.contactHeader}>Información De Contacto</Text>
 
    <View style={styles.infoRow}>
     <Image source={require('../../assets/images/logoEmail.png')} style={styles.iconImage} />
-    <Text style={styles.infoText}>juandeveloper19@gmail.com</Text>
+    <Pressable onPressIn={handlePressInEmail} onPressOut={handlePressOutEmail}>
+     {({ pressed }) => (
+      <Animated.Text style={[styles.infoText, pressed && styles.linkPressed, { transform: [{ scale: scaleEmail }] }]}>
+       juandeveloper19@gmail.com
+      </Animated.Text>
+     )}
+    </Pressable>
    </View>
 
    <View style={styles.infoRow}>
     <Image source={require('../../assets/images/logoGitHub.png')} style={styles.iconImage} />
-    <Text style={styles.infoText}>github.com/JuanWebDeveloper</Text>
+    <Pressable
+     onPressIn={handlePressInGitHub}
+     onPressOut={handlePressOutGitHub}
+     onPress={() => Linking.openURL('https://github.com/JuanWebDeveloper')}
+    >
+     {({ pressed }) => (
+      <>
+       <Animated.Text
+        style={[
+         styles.infoText,
+         pressed && styles.linkPressed,
+         { transform: [{ scale: scaleGitHub }] }, // Aplicamos la animación solo a GitHub
+        ]}
+       >
+        github.com/JuanWebDeveloper
+       </Animated.Text>
+      </>
+     )}
+    </Pressable>
    </View>
 
    <View style={styles.qrContainer}>
