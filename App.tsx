@@ -1,8 +1,11 @@
+// App.tsx
+
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import IDCardFront from './src/components/IDCardFront';
 import IDCardBack from './src/components/IDCardBack';
+import FlipCardButton from './src/components/FlipCardButton';
 
 import { useAppFonts } from './src/hooks/useAppFonts';
 import { Colors } from './src/styles/colors';
@@ -13,10 +16,14 @@ export default function App() {
  if (!fontsLoaded) return null;
 
  return (
-  <View onLayout={onFontsReady} style={styles.container}>
-   {/* <IDCardFront /> */}
-   <IDCardBack />
-  </View>
+  <ScrollView onLayout={onFontsReady} contentContainerStyle={styles.container}>
+   <View>
+    <IDCardFront />
+    <IDCardBack />
+   </View>
+
+   <FlipCardButton />
+  </ScrollView>
  );
 }
 
